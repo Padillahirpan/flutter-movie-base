@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/data/dummies/dummy_authentication.dart';
 import 'package:movie_app/data/dummies/dummy_user.dart';
+import 'package:movie_app/data/firebase/firebase_authentication.dart';
+import 'package:movie_app/data/firebase/firebase_user_repository.dart';
 import 'package:movie_app/domain/usecases/login/login.dart';
 import 'package:movie_app/presentation/pages/main_page/main_page.dart';
 
@@ -14,16 +16,14 @@ class LoginPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            // Simulate a login action
-            // Navigator.pushReplacementNamed(context, '/main');
             Login login = Login(
-              auth: DummyAuthentication(),
-              userRepository: DummyUser(), // Assuming UserRepository is defined
+              auth: FirebaseAuthentication(),
+              userRepository: FirebaseUserRepository(),
             );
 
-            login(LoginParams(email: "email", password: "password")).then((
-              result,
-            ) {
+            login(
+              LoginParams(email: "test2@test.com", password: "123456"),
+            ).then((result) {
               if (result.isSuccess) {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
