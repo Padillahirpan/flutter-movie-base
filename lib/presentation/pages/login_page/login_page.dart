@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/data/dummies/dummy_authentication.dart';
-import 'package:movie_app/data/dummies/dummy_user.dart';
-import 'package:movie_app/data/firebase/firebase_authentication.dart';
-import 'package:movie_app/data/firebase/firebase_user_repository.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/domain/usecases/login/login.dart';
 import 'package:movie_app/presentation/pages/main_page/main_page.dart';
+import 'package:movie_app/presentation/providers/usercases/login_provider.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(title: const Text('Login Page')),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Login login = Login(
-              auth: FirebaseAuthentication(),
-              userRepository: FirebaseUserRepository(),
-            );
+            Login login = ref.watch(loginProvider);
 
             login(
               LoginParams(email: "test2@test.com", password: "123456"),
