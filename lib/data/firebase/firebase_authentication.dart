@@ -11,8 +11,8 @@ class FirebaseAuthentication implements AuthenticationRepository {
 
   @override
   String? getLoggedInUserId() {
-    // TODO: implement getLoggedInUserId
-    throw UnimplementedError();
+    final user = _firebaseAuth.currentUser;
+    return user?.uid;
   }
 
   @override
@@ -33,17 +33,29 @@ class FirebaseAuthentication implements AuthenticationRepository {
   }
 
   @override
-  Future<Result<void>> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<Result<void>> logout() async {
+    await _firebaseAuth.signOut();
+    if (_firebaseAuth.currentUser != null) {
+      return Result.failure('Logout failed: User still logged in');
+    } else {
+      return Result.success(null);
+    }
   }
 
   @override
   Future<Result<String>> register({
     required String email,
     required String password,
-  }) {
-    // TODO: implement register
-    throw UnimplementedError();
+  }) async {
+    try {
+      var userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      return Result.success(userCredential.user!.uid);
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      return Future.value(Result.failure('Registration failed: ${e.message}'));
+    }
   }
 }
