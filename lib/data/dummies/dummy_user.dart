@@ -32,13 +32,13 @@ class DummyUser implements UserRepository {
   }
 
   @override
-  Future<Result<void>> updateUser({required User user}) {
+  Future<Result<User>> updateUser({required User user}) {
     // TODO: implement updateUser
     throw UnimplementedError();
   }
 
   @override
-  Future<Result<void>> updateUserBalance({
+  Future<Result<User>> updateUserBalance({
     required String uid,
     required int balance,
   }) {
@@ -48,8 +48,8 @@ class DummyUser implements UserRepository {
 
   @override
   Future<Result<User>> uploadProfilePicture({
-    required String uid,
-    required File imagePath,
+    required User user,
+    required File imageFile,
   }) {
     // TODO: implement uploadProfilePicture
     throw UnimplementedError();
