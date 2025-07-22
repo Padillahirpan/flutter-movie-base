@@ -12,7 +12,7 @@ class NowPlaying extends _$NowPlaying {
   @override
   FutureOr<List<Movie>> build() => const [];
 
-  Future<void> fetchNowPlayingMovies({int page = 1}) async {
+  Future<void> getMovies({int page = 1}) async {
     state = const AsyncLoading();
 
     GetMovieList getMovieList = ref.read(getMovieListProvider);

@@ -12,7 +12,7 @@ class Upcoming extends _$Upcoming {
   @override
   FutureOr<List<Movie>> build() => const [];
 
-  Future<void> fetchUpcomingMovies({int page = 1}) async {
+  Future<void> getMovies({int page = 1}) async {
     state = const AsyncLoading();
 
     GetMovieList getMovieList = ref.read(getMovieListProvider);
