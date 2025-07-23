@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movie_app/domain/entities/user.dart';
+import 'package:movie_app/presentation/misc/extensions/build_context_extension.dart';
+import 'package:movie_app/presentation/providers/router/router_provider.dart';
 import 'package:movie_app/presentation/providers/user_data/user_data_provider.dart';
 
 class MainPage extends ConsumerStatefulWidget {
@@ -13,22 +14,13 @@ class MainPage extends ConsumerStatefulWidget {
 class _MainPageState extends ConsumerState<MainPage> {
   @override
   Widget build(BuildContext context) {
-    var data = ref.watch(userDataProvider);
-
-    var isLoading = data.isLoading;
-
-    var user_data = ref
-        .watch(userDataProvider)
-        .when(
-          data: (data) => data,
-          error: (error, stackTrace) => '',
-          loading: () => 'Loading',
-        );
-    // return Scaffold(
-    //   appBar: AppBar(title: const Text('Main Page')),
-    //   body: Center(child: Text('Welcome to the Main Page! ${user_data}')),
-    // );
-    if (isLoading) Text('Sabar ini sedang loading kok :)');
+    ref.listen(userDataProvider, (previous, next) {
+      if (previous != null && next is AsyncData && next.value == null) {
+        ref.read(routerProvider).goNamed('login');
+      } else if (next is AsyncError) {
+        context.showSnackBar(next.error.toString());
+      }
+    });
 
     return Scaffold(
       appBar: AppBar(title: const Text('Main Page')),
@@ -43,7 +35,7 @@ class _MainPageState extends ConsumerState<MainPage> {
               child: const Text('Logout'),
             ),
             Text(
-              'Welcome to the Main Page! ${user_data}',
+              'Welcome to the Main Page!',
               style: const TextStyle(fontSize: 20),
             ),
           ],
