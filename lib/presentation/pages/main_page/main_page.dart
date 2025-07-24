@@ -38,6 +38,12 @@ class _MainPageState extends ConsumerState<MainPage> {
               'Welcome to the Main Page!',
               style: const TextStyle(fontSize: 20),
             ),
+            ElevatedButton(
+              onPressed: () {
+                ref.read(routerProvider).goNamed('profile');
+              },
+              child: const Text('Profile'),
+            ),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/presentation/pages/login_page/login_page.dart';
 import 'package:movie_app/presentation/pages/main_page/main_page.dart';
+import 'package:movie_app/presentation/pages/profile/profile_page.dart';
 import 'package:movie_app/presentation/pages/register_page/register_page.dart';
 import 'package:movie_app/presentation/pages/welcome_page/welcome_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -29,6 +30,11 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
       path: '/splashscreen',
       name: 'splashscreen',
       builder: (context, state) => const WelcomePage(),
+    ),
+    GoRoute(
+      path: '/profile',
+      name: 'profile',
+      builder: (context, state) => const ProfilePage(),
     ),
   ],
   initialLocation: '/splashscreen',
