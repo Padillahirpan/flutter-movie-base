@@ -24,12 +24,10 @@ class RegisterPage extends ConsumerWidget {
       BuildContext context,
     ) {
       log('Test test listener');
-      if (next is AsyncData) {
-        if (next.value != null) {
-          ref.read(routerProvider).goNamed('main');
-        } else if (next is AsyncError) {
-          context.showSnackBar('Registration failed: ${next.error}');
-        }
+      if (next is AsyncData && next.value != null) {
+        ref.read(routerProvider).goNamed('main');
+      } else if (next is AsyncError) {
+        context.showSnackBar('Registration failed: ${next.error}');
       }
     }
 
@@ -50,6 +48,15 @@ class RegisterPage extends ConsumerWidget {
             ),
             child: Column(
               children: [
+                CircleAvatar(
+                  radius: 50,
+                  child: Icon(
+                    Icons.add_a_photo,
+                    size: 50,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
+                verticalSpace(20),
                 FlixTextField(labelText: 'Email', controller: emailController),
                 verticalSpace(20),
                 FlixTextField(
