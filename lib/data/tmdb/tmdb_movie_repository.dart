@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:movie_app/data/api/restful_endpoint.dart';
 import 'package:movie_app/data/repositories/movie_repository.dart';
 import 'package:movie_app/domain/entities/actor.dart';
 import 'package:movie_app/domain/entities/movie.dart';
 import 'package:movie_app/domain/entities/movie_detail.dart';
 import 'package:movie_app/domain/entities/result.dart';
+
+import '../api/endpoint.dart';
 
 class TmdbMovieRepository implements MovieRepository {
   final Dio? _dio;
@@ -23,10 +26,9 @@ class TmdbMovieRepository implements MovieRepository {
   @override
   Future<Result<List<Actor>>> getActors({required int movieId}) async {
     try {
-      final response = await _dio!.get(
-        'https://api.themoviedb.org/3/movie/$movieId/credits?language=en-US',
-        options: _options,
-      );
+      final Endpoint endpoint = Restfulendpoints.actors(movieId: movieId);
+      final response = await _dio!.get(endpoint.url, options: _options);
+
       final result = List<Map<String, dynamic>>.from(
         response.data['cast'],
       ).map((json) => Actor.fromJson(json)).toList();
@@ -40,10 +42,9 @@ class TmdbMovieRepository implements MovieRepository {
   @override
   Future<Result<MovieDetail>> getMovieDetails({required int movieId}) async {
     try {
-      final response = await _dio!.get(
-        'https://api.themoviedb.org/3/movie/$movieId?language=en-US',
-        options: _options,
-      );
+      final Endpoint endpoint = Restfulendpoints.movieDetail(movieId: movieId);
+      final response = await _dio!.get(endpoint.url, options: _options);
+
       return Result.success(MovieDetail.fromJson(response.data));
     } catch (e) {
       return Result.failure(e.toString());
@@ -84,11 +85,11 @@ class TmdbMovieRepository implements MovieRepository {
     int page = 1,
   }) async {
     try {
-      final response = await _dio!.get(
-        'https://api.themoviedb.org/3/movie/$category?language=en-US',
-        queryParameters: {'page': page},
-        options: _options,
+      final Endpoint endpoint = Restfulendpoints.movieByCategory(
+        category: category,
+        page: page,
       );
+      final response = await _dio!.get(endpoint.url, options: _options);
 
       if (response.statusCode == 200) {
         final List<dynamic> data = response.data['results'];
