@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/presentation/misc/extensions/build_context_extension.dart';
@@ -13,6 +11,7 @@ class RegisterPage extends ConsumerWidget {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  final TextEditingController nameController = TextEditingController();
 
   RegisterPage({super.key});
 
@@ -23,7 +22,6 @@ class RegisterPage extends ConsumerWidget {
       WidgetRef ref,
       BuildContext context,
     ) {
-      log('Test test listener');
       if (next is AsyncData && next.value != null) {
         ref.read(routerProvider).goNamed('main');
       } else if (next is AsyncError) {
@@ -40,7 +38,7 @@ class RegisterPage extends ConsumerWidget {
         children: [
           verticalSpace(100),
           Center(child: Image.asset('assets/videoboxd-logo.png', width: 200)),
-          verticalSpace(100),
+          verticalSpace(50),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 24.0,
@@ -58,6 +56,8 @@ class RegisterPage extends ConsumerWidget {
                 ),
                 verticalSpace(20),
                 FlixTextField(labelText: 'Email', controller: emailController),
+                verticalSpace(20),
+                FlixTextField(labelText: 'Name', controller: nameController),
                 verticalSpace(20),
                 FlixTextField(
                   labelText: 'Password',
@@ -77,11 +77,25 @@ class RegisterPage extends ConsumerWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () async {
+                        if (emailController.text.isEmpty ||
+                            passwordController.text.isEmpty ||
+                            nameController.text.isEmpty) {
+                          context.showSnackBar('Please fill all fields');
+                          return;
+                        }
                         if (passwordController.text !=
                             confirmPasswordController.text) {
                           context.showSnackBar('Passwords do not match');
                           return;
                         }
+
+                        ref
+                            .read(userDataProvider.notifier)
+                            .register(
+                              email: emailController.text,
+                              password: passwordController.text,
+                              name: nameController.text,
+                            );
                       },
                       child: Text(
                         'Register',
