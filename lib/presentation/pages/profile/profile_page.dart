@@ -31,7 +31,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           return ListView(
             children: [
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(24.0),
                 child: Column(
                   children: [
                     ...userInfo(ref),
@@ -96,9 +96,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       child: ElevatedButton(
                         onPressed: () {
                           ref.read(userDataProvider.notifier).logout();
-                          Navigator.of(
-                            context,
-                          ).pushNamedAndRemoveUntil('/login', (route) => false);
                         },
                         child: const Text('Logout'),
                       ),

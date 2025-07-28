@@ -95,6 +95,8 @@ class RegisterPage extends ConsumerWidget {
                               email: emailController.text,
                               password: passwordController.text,
                               name: nameController.text,
+                              imageUrl:
+                                  'https://api.dicebear.com/9.x/adventurer-neutral/png?seed=${nameController.text}&size=64',
                             );
                       },
                       child: Text(

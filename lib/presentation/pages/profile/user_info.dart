@@ -10,15 +10,13 @@ List<Widget> userInfo(WidgetRef ref) => [
     decoration: BoxDecoration(
       shape: BoxShape.circle,
       color: Colors.grey[300],
-      border: Border.all(color: Colors.grey[400]!, width: 1),
-      image: ref.watch(userDataProvider).valueOrNull?.photoUrl != null
-          ? DecorationImage(
-              image: NetworkImage(
-                ref.watch(userDataProvider).valueOrNull!.photoUrl!,
-              ),
-              fit: BoxFit.cover,
-            )
-          : null,
+      image: DecorationImage(
+        image: NetworkImage(
+          ref.watch(userDataProvider).valueOrNull?.photoUrl ??
+              'https://api.dicebear.com/9.x/adventurer-neutral/png?seed=${ref.watch(userDataProvider).valueOrNull?.email ?? 'Guest'}&size=64',
+        ),
+        fit: BoxFit.cover,
+      ),
     ),
   ),
   verticalSpace(20),
