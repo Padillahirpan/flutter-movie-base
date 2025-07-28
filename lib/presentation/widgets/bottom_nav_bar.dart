@@ -20,13 +20,9 @@ class BottomNavBar extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        height: 60,
+        height: 90,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onPrimary,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(16),
-            topRight: Radius.circular(16),
-          ),
+          color: Colors.black.withAlpha((0.9 * 255).toInt()).withOpacity(0.8),
           boxShadow: [
             BoxShadow(
               color: Colors.black26,
@@ -48,7 +44,7 @@ class BottomNavBar extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? Colors.blue.withAlpha((0.1 * 255).toInt())
+                      ? Colors.white.withAlpha((0.1 * 255).toInt())
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -61,14 +57,14 @@ class BottomNavBar extends StatelessWidget {
                   children: [
                     Icon(
                       item.icon,
-                      color: isSelected ? Colors.blue : Colors.grey,
+                      color: isSelected ? Colors.white : Colors.grey,
                     ),
                     Text(
                       item.label,
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
-                        color: isSelected ? Colors.blue : Colors.grey,
+                        color: isSelected ? Colors.white : Colors.grey,
                       ),
                     ),
                   ],
