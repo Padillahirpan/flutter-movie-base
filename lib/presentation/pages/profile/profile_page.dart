@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movie_app/presentation/pages/profile/profile_item.dart';
+import 'package:movie_app/presentation/pages/profile/user_info.dart';
 import '../../providers/user_data/user_data_provider.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
@@ -26,87 +28,85 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             return const Center(child: Text('No user data available'));
           }
 
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              children: [
-                const SizedBox(height: 32),
-                // Profile Picture
-                CircleAvatar(
-                  radius: 60,
-                  backgroundColor: Colors.grey[300],
-                  backgroundImage: user.photoUrl != null
-                      ? NetworkImage(user.photoUrl!)
-                      : null,
-                  child: user.photoUrl == null
-                      ? Icon(Icons.person, size: 60, color: Colors.grey[600])
-                      : null,
-                ),
-                const SizedBox(height: 32),
-
-                // User Info Cards
-                _buildInfoCard(
-                  icon: Icons.person_outline,
-                  title: 'Name',
-                  value: user.name,
-                ),
-                const SizedBox(height: 16),
-
-                _buildInfoCard(
-                  icon: Icons.email_outlined,
-                  title: 'Email',
-                  value: user.email,
-                ),
-                const SizedBox(height: 16),
-
-                _buildInfoCard(
-                  icon: Icons.account_balance_wallet_outlined,
-                  title: 'Balance',
-                  value: '\$${user.balance}',
-                  valueColor: Colors.green[600],
-                ),
-
-                const SizedBox(height: 48),
-
-                // Action Buttons
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // TODO: Implement edit profile
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+          return ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    ...userInfo(ref),
+                    const Divider(height: 32),
+                    profileItem(
+                      'Update Profile',
+                      onTap: () {
+                        // Handle name tap
+                      },
+                    ),
+                    const SizedBox(height: 18),
+                    profileItem(
+                      'My Wallet',
+                      onTap: () {
+                        // Handle email tap
+                      },
+                    ),
+                    const SizedBox(height: 18),
+                    profileItem(
+                      'Change Password',
+                      onTap: () {
+                        // Handle balance tap
+                      },
+                    ),
+                    const SizedBox(height: 18),
+                    profileItem(
+                      'Change Language',
+                      onTap: () {
+                        // Handle language tap
+                      },
+                    ),
+                    const Divider(height: 32),
+                    const SizedBox(height: 18),
+                    profileItem(
+                      'Contact Us',
+                      onTap: () {
+                        // Handle contact us tap
+                      },
+                    ),
+                    const SizedBox(height: 18),
+                    profileItem(
+                      'Privacy Policy',
+                      onTap: () {
+                        // Handle privacy policy tap
+                      },
+                    ),
+                    const SizedBox(height: 18),
+                    profileItem(
+                      'Terms and Conditions',
+                      onTap: () {
+                        // Handle terms and conditions tap
+                      },
+                    ),
+                    const SizedBox(height: 18),
+                    Text(
+                      'Version 0.0.1',
+                      style: TextStyle(color: Colors.grey[600]),
+                    ),
+                    const SizedBox(height: 52),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          ref.read(userDataProvider.notifier).logout();
+                          Navigator.of(
+                            context,
+                          ).pushNamedAndRemoveUntil('/login', (route) => false);
+                        },
+                        child: const Text('Logout'),
                       ),
                     ),
-                    child: const Text(
-                      'Edit Profile',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
+                  ],
                 ),
-
-                const SizedBox(height: 16),
-
-                SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      ref.read(userDataProvider.notifier).logout();
-                    },
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: const Text('Logout', style: TextStyle(fontSize: 16)),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
