@@ -16,13 +16,26 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   Widget build(BuildContext context) {
     final userAsyncValue = ref.watch(userDataProvider);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+    return Container(
+      decoration: BoxDecoration(
+        gradient: RadialGradient(
+          colors: [
+            Color(0xff550080),
+            Color(0xff001980),
+            Colors.transparent,
+            Colors.transparent,
+          ],
+          center: Alignment.topRight,
+          radius: 2.0, // Increase this value to spread the gradient more
+          stops: [
+            0.1,
+            0.3,
+            0.7,
+            1.0,
+          ], // Optional: control color transition points
+        ),
       ),
-      body: userAsyncValue.when(
+      child: userAsyncValue.when(
         data: (user) {
           if (user == null) {
             return const Center(child: Text('No user data available'));
@@ -108,53 +121,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
         },
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stackTrace) => Center(child: Text('Error: $error')),
-      ),
-    );
-  }
-
-  Widget _buildInfoCard({
-    required IconData icon,
-    required String title,
-    required String value,
-    Color? valueColor,
-  }) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.grey[50],
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey[200]!),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: Colors.grey[600], size: 24),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[600],
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  value,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: valueColor ?? Colors.black87,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

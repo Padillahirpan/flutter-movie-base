@@ -14,11 +14,28 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ListView(
-      children: [
-        Container(
-          decoration: BoxDecoration(color: Colors.transparent),
-          child: Column(
+    return Container(
+      decoration: BoxDecoration(
+        gradient: RadialGradient(
+          colors: [
+            Color(0xff550080),
+            Color(0xff001980),
+            Colors.transparent,
+            Colors.transparent,
+          ],
+          center: Alignment.topRight,
+          radius: 2.0, // Increase this value to spread the gradient more
+          stops: [
+            0.1,
+            0.3,
+            0.7,
+            1.0,
+          ], // Optional: control color transition points
+        ),
+      ),
+      child: ListView(
+        children: [
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               verticalSpace(24.0),
@@ -46,8 +63,8 @@ class HomePage extends ConsumerWidget {
               verticalSpace(100.0),
             ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
