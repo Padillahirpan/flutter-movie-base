@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class NetworkImageCard extends StatelessWidget {
   final double width;
@@ -30,7 +31,7 @@ class NetworkImageCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           image: DecorationImage(
             image: NetworkImage(imageUrl ?? ''),
-            fit: fit == 'cover' ? BoxFit.cover : BoxFit.contain,
+            fit: fit ?? BoxFit.cover,
           ),
         ),
         child: Stack(
@@ -45,14 +46,15 @@ class NetworkImageCard extends StatelessWidget {
                 ),
               ),
             ] else ...[
-              // The image will be displayed by the DecorationImage
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(borderRadius),
-                  image: DecorationImage(
-                    image: NetworkImage(imageUrl!),
-                    fit: fit,
-                  ),
+              // The image will be displayed by the ClipRRect
+              ClipRRect(
+                borderRadius: BorderRadius.circular(borderRadius),
+                child: FadeInImage.memoryNetwork(
+                  fadeInDuration: Duration(milliseconds: 100),
+                  fadeOutDuration: Duration(milliseconds: 100),
+                  image: imageUrl!,
+                  placeholder: kTransparentImage,
+                  fit: fit,
                 ),
               ),
             ],
