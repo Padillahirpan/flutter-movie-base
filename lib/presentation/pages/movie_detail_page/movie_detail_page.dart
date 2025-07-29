@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/domain/entities/movie.dart';
 import 'package:movie_app/domain/entities/movie_detail.dart';
+import 'package:movie_app/presentation/misc/constants.dart';
 import 'package:movie_app/presentation/misc/methods.dart';
 import 'package:movie_app/presentation/providers/router/router_provider.dart';
-
 import '../../providers/movie/movie_detail_provider.dart';
 import '../../widgets/adaptive_back_button.dart';
 import 'methods/book_button.dart';
@@ -121,12 +121,6 @@ class _MovieDetailPageState extends ConsumerState<MovieDetailPage> {
               },
             ),
           ),
-          // Padding(
-          //   padding: EdgeInsetsGeometry.all(16.0),
-          //   child: Text(
-          //     "${movieDetail.value?.overview ?? 'No overview available.'}",
-          //   ),
-          // ),
         ],
       ),
     );
@@ -191,7 +185,10 @@ class _Gradient extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment(0, 0.7),
           stops: const [0.4, 1.0],
-          colors: const [Colors.transparent, Colors.black],
+          colors: [
+            Colors.transparent,
+            onSurfaceColor.withAlpha((0.99 * 255).toInt()),
+          ],
         ),
       ),
     );

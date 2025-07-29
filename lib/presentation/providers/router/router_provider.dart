@@ -1,5 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:movie_app/domain/entities/movie_detail.dart';
 import 'package:movie_app/presentation/pages/login_page/login_page.dart';
 import 'package:movie_app/presentation/pages/main_page/main_page.dart';
 import 'package:movie_app/presentation/pages/movie_detail_page/movie_detail_page.dart';
@@ -47,10 +46,6 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
         final movie = state.extra as Movie;
         return MovieDetailPage(movie: movie);
       },
-      // builder: (context, state) {
-      //   final id = state.params['id'];
-      //   return MovieDetailPage(id: id);
-      // },
     ),
   ],
   initialLocation: '/splashscreen',
