@@ -14,7 +14,9 @@ _MovieDetail _$MovieDetailFromJson(Map<String, dynamic> json) => _MovieDetail(
   backdropPath: json['backdrop_path'] as String?,
   runtime: (json['runtime'] as num).toInt(),
   voteAverage: (json['vote_average'] as num?)?.toDouble(),
-  genres: (json['genres'] as List<dynamic>).map((e) => e as String).toList(),
+  genres: (json['genres'] as List<dynamic>)
+      .map((e) => Genre.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$MovieDetailToJson(_MovieDetail instance) =>

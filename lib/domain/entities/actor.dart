@@ -8,6 +8,7 @@ abstract class Actor with _$Actor {
   const factory Actor({
     required String name,
     @JsonKey(name: 'profile_path') String? profilePath,
+    required String character,
   }) = _Actor;
 
   factory Actor.fromJson(Map<String, dynamic> json) => _$ActorFromJson(json);

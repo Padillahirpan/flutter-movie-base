@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:movie_app/domain/entities/movie.dart';
 import 'package:movie_app/domain/entities/movie_detail.dart';
 import 'package:movie_app/domain/entities/result.dart';
@@ -17,6 +19,11 @@ Future<MovieDetail?> movieDetail(
 
   var movieDetailResult = await getMovieDetail(
     GetMovieDetailParam(movie: movie),
+  );
+
+  log(
+    'this is movie detail result: $movieDetailResult',
+    name: 'MovieDetailProvider',
   );
 
   return switch (movieDetailResult) {

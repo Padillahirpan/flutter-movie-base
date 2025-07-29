@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Actor {
 
- String get name;@JsonKey(name: 'profile_path') String? get profilePath;
+ String get name;@JsonKey(name: 'profile_path') String? get profilePath; String get character;
 /// Create a copy of Actor
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ActorCopyWith<Actor> get copyWith => _$ActorCopyWithImpl<Actor>(this as Actor, 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Actor&&(identical(other.name, name) || other.name == name)&&(identical(other.profilePath, profilePath) || other.profilePath == profilePath));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Actor&&(identical(other.name, name) || other.name == name)&&(identical(other.profilePath, profilePath) || other.profilePath == profilePath)&&(identical(other.character, character) || other.character == character));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,profilePath);
+int get hashCode => Object.hash(runtimeType,name,profilePath,character);
 
 @override
 String toString() {
-  return 'Actor(name: $name, profilePath: $profilePath)';
+  return 'Actor(name: $name, profilePath: $profilePath, character: $character)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ActorCopyWith<$Res>  {
   factory $ActorCopyWith(Actor value, $Res Function(Actor) _then) = _$ActorCopyWithImpl;
 @useResult
 $Res call({
- String name,@JsonKey(name: 'profile_path') String? profilePath
+ String name,@JsonKey(name: 'profile_path') String? profilePath, String character
 });
 
 
@@ -65,11 +65,12 @@ class _$ActorCopyWithImpl<$Res>
 
 /// Create a copy of Actor
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? profilePath = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? profilePath = freezed,Object? character = null,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,profilePath: freezed == profilePath ? _self.profilePath : profilePath // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,character: null == character ? _self.character : character // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -154,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name, @JsonKey(name: 'profile_path')  String? profilePath)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name, @JsonKey(name: 'profile_path')  String? profilePath,  String character)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Actor() when $default != null:
-return $default(_that.name,_that.profilePath);case _:
+return $default(_that.name,_that.profilePath,_that.character);case _:
   return orElse();
 
 }
@@ -175,10 +176,10 @@ return $default(_that.name,_that.profilePath);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name, @JsonKey(name: 'profile_path')  String? profilePath)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name, @JsonKey(name: 'profile_path')  String? profilePath,  String character)  $default,) {final _that = this;
 switch (_that) {
 case _Actor():
-return $default(_that.name,_that.profilePath);case _:
+return $default(_that.name,_that.profilePath,_that.character);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +196,10 @@ return $default(_that.name,_that.profilePath);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name, @JsonKey(name: 'profile_path')  String? profilePath)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name, @JsonKey(name: 'profile_path')  String? profilePath,  String character)?  $default,) {final _that = this;
 switch (_that) {
 case _Actor() when $default != null:
-return $default(_that.name,_that.profilePath);case _:
+return $default(_that.name,_that.profilePath,_that.character);case _:
   return null;
 
 }
@@ -210,11 +211,12 @@ return $default(_that.name,_that.profilePath);case _:
 @JsonSerializable()
 
 class _Actor implements Actor {
-  const _Actor({required this.name, @JsonKey(name: 'profile_path') this.profilePath});
+  const _Actor({required this.name, @JsonKey(name: 'profile_path') this.profilePath, required this.character});
   factory _Actor.fromJson(Map<String, dynamic> json) => _$ActorFromJson(json);
 
 @override final  String name;
 @override@JsonKey(name: 'profile_path') final  String? profilePath;
+@override final  String character;
 
 /// Create a copy of Actor
 /// with the given fields replaced by the non-null parameter values.
@@ -229,16 +231,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Actor&&(identical(other.name, name) || other.name == name)&&(identical(other.profilePath, profilePath) || other.profilePath == profilePath));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Actor&&(identical(other.name, name) || other.name == name)&&(identical(other.profilePath, profilePath) || other.profilePath == profilePath)&&(identical(other.character, character) || other.character == character));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,profilePath);
+int get hashCode => Object.hash(runtimeType,name,profilePath,character);
 
 @override
 String toString() {
-  return 'Actor(name: $name, profilePath: $profilePath)';
+  return 'Actor(name: $name, profilePath: $profilePath, character: $character)';
 }
 
 
@@ -249,7 +251,7 @@ abstract mixin class _$ActorCopyWith<$Res> implements $ActorCopyWith<$Res> {
   factory _$ActorCopyWith(_Actor value, $Res Function(_Actor) _then) = __$ActorCopyWithImpl;
 @override @useResult
 $Res call({
- String name,@JsonKey(name: 'profile_path') String? profilePath
+ String name,@JsonKey(name: 'profile_path') String? profilePath, String character
 });
 
 
@@ -266,11 +268,12 @@ class __$ActorCopyWithImpl<$Res>
 
 /// Create a copy of Actor
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? profilePath = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? profilePath = freezed,Object? character = null,}) {
   return _then(_Actor(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,profilePath: freezed == profilePath ? _self.profilePath : profilePath // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,character: null == character ? _self.character : character // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

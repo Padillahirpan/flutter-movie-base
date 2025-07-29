@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:movie_app/domain/entities/genre.dart';
 
 part 'movie_detail.freezed.dart';
 part 'movie_detail.g.dart';
@@ -13,19 +14,9 @@ abstract class MovieDetail with _$MovieDetail {
     @JsonKey(name: 'backdrop_path') String? backdropPath,
     required int runtime,
     @JsonKey(name: 'vote_average') double? voteAverage,
-    required List<String> genres,
+    required List<Genre> genres,
   }) = _MovieDetail;
 
-  // factory MovieDetail.fromJson(Map<String, dynamic> json) => MovieDetail(
-  //   id: json['id'],
-  //   title: json['title'],
-  //   posterPath: json['poster_path'] as String?,
-  //   overview: json['overview'],
-  //   backdropPath: json['backdrop_path'] as String?,
-  //   runtime: json['runtime'],
-  //   voteAverage: (json['vote_average'] as num?)?.toDouble(),
-  //   genres: List<String>.from(json['genres'].map((e) => e['name'])),
-  // );
   factory MovieDetail.fromJson(Map<String, dynamic> json) =>
       _$MovieDetailFromJson(json);
 }

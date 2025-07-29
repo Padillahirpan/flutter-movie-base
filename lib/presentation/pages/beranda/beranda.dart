@@ -6,6 +6,7 @@ import 'package:movie_app/presentation/pages/beranda/methods/search_bar.dart';
 import 'package:movie_app/presentation/pages/beranda/methods/user_info.dart';
 import 'package:movie_app/presentation/providers/movie/now_playing_provider.dart';
 import 'package:movie_app/presentation/providers/movie/upcoming_provider.dart';
+import 'package:movie_app/presentation/providers/router/router_provider.dart';
 
 import 'methods/promotion_list.dart';
 
@@ -45,7 +46,11 @@ class HomePage extends ConsumerWidget {
               verticalSpace(24.0),
               ...movieList(
                 title: 'Now Playing',
-                onTap: (movie) {},
+                onTap: (movie) {
+                  ref
+                      .read(routerProvider)
+                      .pushNamed('moviedetail', extra: movie);
+                },
                 movie: ref.watch(nowPlayingProvider),
               ),
               verticalSpace(24.0),
@@ -57,7 +62,11 @@ class HomePage extends ConsumerWidget {
               verticalSpace(24.0),
               ...movieList(
                 title: 'Upcoming Movies',
-                onTap: (movie) {},
+                onTap: (movie) {
+                  ref
+                      .read(routerProvider)
+                      .pushNamed('moviedetail', extra: movie);
+                },
                 movie: ref.watch(upcomingProvider),
               ),
               verticalSpace(100.0),

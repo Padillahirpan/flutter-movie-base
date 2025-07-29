@@ -36,7 +36,7 @@ Widget searchBar(BuildContext context) {
                 backgroundColor: MaterialStateProperty.all(Colors.white),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(50),
                   ),
                 ),
               ),

@@ -11,7 +11,7 @@ class Restfulendpoints {
   }
 
   static Endpoint movieDetail({required int movieId}) {
-    return Endpoint.get(url: '$baseUrl?$language');
+    return Endpoint.get(url: '$baseUrl/$movieId?$language');
   }
 
   static Endpoint movieByCategory({

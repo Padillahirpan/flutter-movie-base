@@ -12,10 +12,4 @@ abstract class Movie with _$Movie {
   }) = _Movie;
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
-
-  // factory Movie.fromJson(Map<String, dynamic> json) => Movie(
-  //   id: json['id'],
-  //   title: json['title'],
-  //   posterPath: json['poster_path'] as String?,
-  // );
 }
