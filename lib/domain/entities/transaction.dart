@@ -15,6 +15,7 @@ abstract class Transaction with _$Transaction {
     String? theatherName,
     int? watchingTime,
     int? ticketAmount,
+    int? ticketPrice,
     required int adminFee,
     required int total,
   }) = _Transaction;

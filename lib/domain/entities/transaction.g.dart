@@ -18,6 +18,7 @@ _Transaction _$TransactionFromJson(Map<String, dynamic> json) => _Transaction(
   theatherName: json['theatherName'] as String?,
   watchingTime: (json['watchingTime'] as num?)?.toInt(),
   ticketAmount: (json['ticketAmount'] as num?)?.toInt(),
+  ticketPrice: (json['ticketPrice'] as num?)?.toInt(),
   adminFee: (json['adminFee'] as num).toInt(),
   total: (json['total'] as num).toInt(),
 );
@@ -33,6 +34,7 @@ Map<String, dynamic> _$TransactionToJson(_Transaction instance) =>
       'theatherName': instance.theatherName,
       'watchingTime': instance.watchingTime,
       'ticketAmount': instance.ticketAmount,
+      'ticketPrice': instance.ticketPrice,
       'adminFee': instance.adminFee,
       'total': instance.total,
     };

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Transaction {
 
- String? get id; String get uid; int? get transactionTime; String? get transactionImage; String get title; List<String> get seats; String? get theatherName; int? get watchingTime; int? get ticketAmount; int get adminFee; int get total;
+ String? get id; String get uid; int? get transactionTime; String? get transactionImage; String get title; List<String> get seats; String? get theatherName; int? get watchingTime; int? get ticketAmount; int? get ticketPrice; int get adminFee; int get total;
 /// Create a copy of Transaction
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $TransactionCopyWith<Transaction> get copyWith => _$TransactionCopyWithImpl<Tran
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Transaction&&(identical(other.id, id) || other.id == id)&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.transactionTime, transactionTime) || other.transactionTime == transactionTime)&&(identical(other.transactionImage, transactionImage) || other.transactionImage == transactionImage)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.seats, seats)&&(identical(other.theatherName, theatherName) || other.theatherName == theatherName)&&(identical(other.watchingTime, watchingTime) || other.watchingTime == watchingTime)&&(identical(other.ticketAmount, ticketAmount) || other.ticketAmount == ticketAmount)&&(identical(other.adminFee, adminFee) || other.adminFee == adminFee)&&(identical(other.total, total) || other.total == total));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Transaction&&(identical(other.id, id) || other.id == id)&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.transactionTime, transactionTime) || other.transactionTime == transactionTime)&&(identical(other.transactionImage, transactionImage) || other.transactionImage == transactionImage)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.seats, seats)&&(identical(other.theatherName, theatherName) || other.theatherName == theatherName)&&(identical(other.watchingTime, watchingTime) || other.watchingTime == watchingTime)&&(identical(other.ticketAmount, ticketAmount) || other.ticketAmount == ticketAmount)&&(identical(other.ticketPrice, ticketPrice) || other.ticketPrice == ticketPrice)&&(identical(other.adminFee, adminFee) || other.adminFee == adminFee)&&(identical(other.total, total) || other.total == total));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,uid,transactionTime,transactionImage,title,const DeepCollectionEquality().hash(seats),theatherName,watchingTime,ticketAmount,adminFee,total);
+int get hashCode => Object.hash(runtimeType,id,uid,transactionTime,transactionImage,title,const DeepCollectionEquality().hash(seats),theatherName,watchingTime,ticketAmount,ticketPrice,adminFee,total);
 
 @override
 String toString() {
-  return 'Transaction(id: $id, uid: $uid, transactionTime: $transactionTime, transactionImage: $transactionImage, title: $title, seats: $seats, theatherName: $theatherName, watchingTime: $watchingTime, ticketAmount: $ticketAmount, adminFee: $adminFee, total: $total)';
+  return 'Transaction(id: $id, uid: $uid, transactionTime: $transactionTime, transactionImage: $transactionImage, title: $title, seats: $seats, theatherName: $theatherName, watchingTime: $watchingTime, ticketAmount: $ticketAmount, ticketPrice: $ticketPrice, adminFee: $adminFee, total: $total)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $TransactionCopyWith<$Res>  {
   factory $TransactionCopyWith(Transaction value, $Res Function(Transaction) _then) = _$TransactionCopyWithImpl;
 @useResult
 $Res call({
- String? id, String uid, int? transactionTime, String? transactionImage, String title, List<String> seats, String? theatherName, int? watchingTime, int? ticketAmount, int adminFee, int total
+ String? id, String uid, int? transactionTime, String? transactionImage, String title, List<String> seats, String? theatherName, int? watchingTime, int? ticketAmount, int? ticketPrice, int adminFee, int total
 });
 
 
@@ -65,7 +65,7 @@ class _$TransactionCopyWithImpl<$Res>
 
 /// Create a copy of Transaction
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? uid = null,Object? transactionTime = freezed,Object? transactionImage = freezed,Object? title = null,Object? seats = null,Object? theatherName = freezed,Object? watchingTime = freezed,Object? ticketAmount = freezed,Object? adminFee = null,Object? total = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? uid = null,Object? transactionTime = freezed,Object? transactionImage = freezed,Object? title = null,Object? seats = null,Object? theatherName = freezed,Object? watchingTime = freezed,Object? ticketAmount = freezed,Object? ticketPrice = freezed,Object? adminFee = null,Object? total = null,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,uid: null == uid ? _self.uid : uid // ignore: cast_nullable_to_non_nullable
@@ -76,6 +76,7 @@ as String,seats: null == seats ? _self.seats : seats // ignore: cast_nullable_to
 as List<String>,theatherName: freezed == theatherName ? _self.theatherName : theatherName // ignore: cast_nullable_to_non_nullable
 as String?,watchingTime: freezed == watchingTime ? _self.watchingTime : watchingTime // ignore: cast_nullable_to_non_nullable
 as int?,ticketAmount: freezed == ticketAmount ? _self.ticketAmount : ticketAmount // ignore: cast_nullable_to_non_nullable
+as int?,ticketPrice: freezed == ticketPrice ? _self.ticketPrice : ticketPrice // ignore: cast_nullable_to_non_nullable
 as int?,adminFee: null == adminFee ? _self.adminFee : adminFee // ignore: cast_nullable_to_non_nullable
 as int,total: null == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
 as int,
@@ -163,10 +164,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String uid,  int? transactionTime,  String? transactionImage,  String title,  List<String> seats,  String? theatherName,  int? watchingTime,  int? ticketAmount,  int adminFee,  int total)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String uid,  int? transactionTime,  String? transactionImage,  String title,  List<String> seats,  String? theatherName,  int? watchingTime,  int? ticketAmount,  int? ticketPrice,  int adminFee,  int total)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Transaction() when $default != null:
-return $default(_that.id,_that.uid,_that.transactionTime,_that.transactionImage,_that.title,_that.seats,_that.theatherName,_that.watchingTime,_that.ticketAmount,_that.adminFee,_that.total);case _:
+return $default(_that.id,_that.uid,_that.transactionTime,_that.transactionImage,_that.title,_that.seats,_that.theatherName,_that.watchingTime,_that.ticketAmount,_that.ticketPrice,_that.adminFee,_that.total);case _:
   return orElse();
 
 }
@@ -184,10 +185,10 @@ return $default(_that.id,_that.uid,_that.transactionTime,_that.transactionImage,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String uid,  int? transactionTime,  String? transactionImage,  String title,  List<String> seats,  String? theatherName,  int? watchingTime,  int? ticketAmount,  int adminFee,  int total)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String uid,  int? transactionTime,  String? transactionImage,  String title,  List<String> seats,  String? theatherName,  int? watchingTime,  int? ticketAmount,  int? ticketPrice,  int adminFee,  int total)  $default,) {final _that = this;
 switch (_that) {
 case _Transaction():
-return $default(_that.id,_that.uid,_that.transactionTime,_that.transactionImage,_that.title,_that.seats,_that.theatherName,_that.watchingTime,_that.ticketAmount,_that.adminFee,_that.total);case _:
+return $default(_that.id,_that.uid,_that.transactionTime,_that.transactionImage,_that.title,_that.seats,_that.theatherName,_that.watchingTime,_that.ticketAmount,_that.ticketPrice,_that.adminFee,_that.total);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -204,10 +205,10 @@ return $default(_that.id,_that.uid,_that.transactionTime,_that.transactionImage,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String uid,  int? transactionTime,  String? transactionImage,  String title,  List<String> seats,  String? theatherName,  int? watchingTime,  int? ticketAmount,  int adminFee,  int total)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String uid,  int? transactionTime,  String? transactionImage,  String title,  List<String> seats,  String? theatherName,  int? watchingTime,  int? ticketAmount,  int? ticketPrice,  int adminFee,  int total)?  $default,) {final _that = this;
 switch (_that) {
 case _Transaction() when $default != null:
-return $default(_that.id,_that.uid,_that.transactionTime,_that.transactionImage,_that.title,_that.seats,_that.theatherName,_that.watchingTime,_that.ticketAmount,_that.adminFee,_that.total);case _:
+return $default(_that.id,_that.uid,_that.transactionTime,_that.transactionImage,_that.title,_that.seats,_that.theatherName,_that.watchingTime,_that.ticketAmount,_that.ticketPrice,_that.adminFee,_that.total);case _:
   return null;
 
 }
@@ -219,7 +220,7 @@ return $default(_that.id,_that.uid,_that.transactionTime,_that.transactionImage,
 @JsonSerializable()
 
 class _Transaction implements Transaction {
-  const _Transaction({this.id, required this.uid, this.transactionTime, this.transactionImage, required this.title, final  List<String> seats = const [], this.theatherName, this.watchingTime, this.ticketAmount, required this.adminFee, required this.total}): _seats = seats;
+  const _Transaction({this.id, required this.uid, this.transactionTime, this.transactionImage, required this.title, final  List<String> seats = const [], this.theatherName, this.watchingTime, this.ticketAmount, this.ticketPrice, required this.adminFee, required this.total}): _seats = seats;
   factory _Transaction.fromJson(Map<String, dynamic> json) => _$TransactionFromJson(json);
 
 @override final  String? id;
@@ -237,6 +238,7 @@ class _Transaction implements Transaction {
 @override final  String? theatherName;
 @override final  int? watchingTime;
 @override final  int? ticketAmount;
+@override final  int? ticketPrice;
 @override final  int adminFee;
 @override final  int total;
 
@@ -253,16 +255,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Transaction&&(identical(other.id, id) || other.id == id)&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.transactionTime, transactionTime) || other.transactionTime == transactionTime)&&(identical(other.transactionImage, transactionImage) || other.transactionImage == transactionImage)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._seats, _seats)&&(identical(other.theatherName, theatherName) || other.theatherName == theatherName)&&(identical(other.watchingTime, watchingTime) || other.watchingTime == watchingTime)&&(identical(other.ticketAmount, ticketAmount) || other.ticketAmount == ticketAmount)&&(identical(other.adminFee, adminFee) || other.adminFee == adminFee)&&(identical(other.total, total) || other.total == total));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Transaction&&(identical(other.id, id) || other.id == id)&&(identical(other.uid, uid) || other.uid == uid)&&(identical(other.transactionTime, transactionTime) || other.transactionTime == transactionTime)&&(identical(other.transactionImage, transactionImage) || other.transactionImage == transactionImage)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._seats, _seats)&&(identical(other.theatherName, theatherName) || other.theatherName == theatherName)&&(identical(other.watchingTime, watchingTime) || other.watchingTime == watchingTime)&&(identical(other.ticketAmount, ticketAmount) || other.ticketAmount == ticketAmount)&&(identical(other.ticketPrice, ticketPrice) || other.ticketPrice == ticketPrice)&&(identical(other.adminFee, adminFee) || other.adminFee == adminFee)&&(identical(other.total, total) || other.total == total));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,uid,transactionTime,transactionImage,title,const DeepCollectionEquality().hash(_seats),theatherName,watchingTime,ticketAmount,adminFee,total);
+int get hashCode => Object.hash(runtimeType,id,uid,transactionTime,transactionImage,title,const DeepCollectionEquality().hash(_seats),theatherName,watchingTime,ticketAmount,ticketPrice,adminFee,total);
 
 @override
 String toString() {
-  return 'Transaction(id: $id, uid: $uid, transactionTime: $transactionTime, transactionImage: $transactionImage, title: $title, seats: $seats, theatherName: $theatherName, watchingTime: $watchingTime, ticketAmount: $ticketAmount, adminFee: $adminFee, total: $total)';
+  return 'Transaction(id: $id, uid: $uid, transactionTime: $transactionTime, transactionImage: $transactionImage, title: $title, seats: $seats, theatherName: $theatherName, watchingTime: $watchingTime, ticketAmount: $ticketAmount, ticketPrice: $ticketPrice, adminFee: $adminFee, total: $total)';
 }
 
 
@@ -273,7 +275,7 @@ abstract mixin class _$TransactionCopyWith<$Res> implements $TransactionCopyWith
   factory _$TransactionCopyWith(_Transaction value, $Res Function(_Transaction) _then) = __$TransactionCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String uid, int? transactionTime, String? transactionImage, String title, List<String> seats, String? theatherName, int? watchingTime, int? ticketAmount, int adminFee, int total
+ String? id, String uid, int? transactionTime, String? transactionImage, String title, List<String> seats, String? theatherName, int? watchingTime, int? ticketAmount, int? ticketPrice, int adminFee, int total
 });
 
 
@@ -290,7 +292,7 @@ class __$TransactionCopyWithImpl<$Res>
 
 /// Create a copy of Transaction
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? uid = null,Object? transactionTime = freezed,Object? transactionImage = freezed,Object? title = null,Object? seats = null,Object? theatherName = freezed,Object? watchingTime = freezed,Object? ticketAmount = freezed,Object? adminFee = null,Object? total = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? uid = null,Object? transactionTime = freezed,Object? transactionImage = freezed,Object? title = null,Object? seats = null,Object? theatherName = freezed,Object? watchingTime = freezed,Object? ticketAmount = freezed,Object? ticketPrice = freezed,Object? adminFee = null,Object? total = null,}) {
   return _then(_Transaction(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,uid: null == uid ? _self.uid : uid // ignore: cast_nullable_to_non_nullable
@@ -301,6 +303,7 @@ as String,seats: null == seats ? _self._seats : seats // ignore: cast_nullable_t
 as List<String>,theatherName: freezed == theatherName ? _self.theatherName : theatherName // ignore: cast_nullable_to_non_nullable
 as String?,watchingTime: freezed == watchingTime ? _self.watchingTime : watchingTime // ignore: cast_nullable_to_non_nullable
 as int?,ticketAmount: freezed == ticketAmount ? _self.ticketAmount : ticketAmount // ignore: cast_nullable_to_non_nullable
+as int?,ticketPrice: freezed == ticketPrice ? _self.ticketPrice : ticketPrice // ignore: cast_nullable_to_non_nullable
 as int?,adminFee: null == adminFee ? _self.adminFee : adminFee // ignore: cast_nullable_to_non_nullable
 as int,total: null == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
 as int,
