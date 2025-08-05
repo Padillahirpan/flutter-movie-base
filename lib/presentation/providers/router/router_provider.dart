@@ -4,10 +4,15 @@ import 'package:movie_app/presentation/pages/main_page/main_page.dart';
 import 'package:movie_app/presentation/pages/movie_detail_page/movie_detail_page.dart';
 import 'package:movie_app/presentation/pages/profile/profile_page.dart';
 import 'package:movie_app/presentation/pages/register_page/register_page.dart';
+import 'package:movie_app/presentation/pages/time_booking_page/time_booking_page.dart';
 import 'package:movie_app/presentation/pages/welcome_page/welcome_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../domain/entities/movie.dart';
+import '../../../domain/entities/movie_detail.dart';
+import '../../../domain/entities/transaction.dart';
+import '../../pages/booking_confirmation/booking_confirmation.dart';
+import '../../pages/seat_booking_page/seat_booking_page.dart';
 
 part 'router_provider.g.dart';
 
@@ -45,6 +50,32 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
       builder: (context, state) {
         final movie = state.extra as Movie;
         return MovieDetailPage(movie: movie);
+      },
+    ),
+    GoRoute(
+      path: '/time-booking',
+      name: 'time-booking',
+      builder: (context, state) {
+        // final movie = state.extra as MovieDetail;
+        return TimeBookingPage(state.extra as MovieDetail);
+      },
+    ),
+    GoRoute(
+      path: '/seat-booking',
+      name: 'seat-booking',
+      builder: (context, state) {
+        return SeatBookingPage(
+          transactionDetail: state.extra as (MovieDetail, Transaction),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/booking-confirmation',
+      name: 'booking-confirmation',
+      builder: (context, state) {
+        return BookingConfirmationPage(
+          transactionDetail: state.extra as (MovieDetail, Transaction),
+        );
       },
     ),
   ],

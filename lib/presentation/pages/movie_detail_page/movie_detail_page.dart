@@ -79,19 +79,28 @@ class _MovieDetailPageState extends ConsumerState<MovieDetailPage> {
           SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Padding(
-              padding: EdgeInsetsGeometry.only(
-                top: 450,
-                left: 24.0,
-                right: 24.0,
-              ),
+              padding: EdgeInsetsGeometry.only(top: 450, left: 0.0, right: 0.0),
               child: ListView(
                 children: [
-                  Text(
-                    'Synopsis',
-                    style: Theme.of(context).textTheme.headlineSmall,
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Synopsis',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                        verticalSpace(12.0),
+                        Text(
+                          movieDetail.value?.overview ??
+                              'No overview available.',
+                        ),
+                      ],
+                    ),
                   ),
-                  verticalSpace(12.0),
-                  Text(movieDetail.value?.overview ?? 'No overview available.'),
+
                   verticalSpace(40.0),
                   ListOfActors(movie: widget.movie),
                   verticalSpace(70.0),
@@ -116,8 +125,9 @@ class _MovieDetailPageState extends ConsumerState<MovieDetailPage> {
             right: 0,
             child: BookButton(
               onPressed: () {
-                // Handle booking action
-                print('Book button pressed');
+                ref
+                    .read(routerProvider)
+                    .pushNamed('time-booking', extra: movieDetail.value);
               },
             ),
           ),
@@ -219,16 +229,37 @@ class _Headline extends StatelessWidget {
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
-            Text(
-              movieDetail.voteAverage != null
-                  ? 'Rating: ${movieDetail.voteAverage!.toStringAsFixed(1)}'
-                  : 'Rating: N/A',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: Colors.pink[400],
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-              ),
+            Row(
+              children: [
+                Text(
+                  movieDetail.voteAverage != null
+                      ? 'Rating: ${movieDetail.voteAverage!.toStringAsFixed(1)}'
+                      : 'Rating: N/A',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Colors.pink[400],
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
+                horizontalSpace(8.0),
+                Text(
+                  '•',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Colors.grey[100],
+                    fontSize: 14,
+                  ),
+                ),
+                horizontalSpace(8.0),
+                Text(
+                  'Runtime: ${movieDetail.runtime} min',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Colors.grey[100],
+                    fontSize: 14,
+                  ),
+                ),
+              ],
             ),
+
             verticalSpace(12.0),
             _Tags(movie: movieDetail),
           ],

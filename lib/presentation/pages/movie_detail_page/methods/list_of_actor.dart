@@ -30,11 +30,14 @@ class ListOfActors extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          actors.length > 1 ? 'Cast & Crew' : 'Cast',
-          style: Theme.of(
-            context,
-          ).textTheme.headlineSmall?.copyWith(color: Colors.white),
+        Padding(
+          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+          child: Text(
+            actors.length > 1 ? 'Cast & Crew' : 'Cast',
+            style: Theme.of(
+              context,
+            ).textTheme.headlineSmall?.copyWith(color: Colors.white),
+          ),
         ),
         verticalSpace(12.0),
         SingleChildScrollView(
@@ -44,8 +47,8 @@ class ListOfActors extends ConsumerWidget {
                 .map(
                   (actor) => Padding(
                     padding: EdgeInsets.only(
-                      left: actor == actors.first ? 0.0 : 8.0,
-                      right: actor == actors.last ? 0.0 : 8.0,
+                      left: actor == actors.first ? 24.0 : 8.0,
+                      right: actor == actors.last ? 24.0 : 4.0,
                     ),
                     child: CastCrewCard(actor: actor),
                   ),

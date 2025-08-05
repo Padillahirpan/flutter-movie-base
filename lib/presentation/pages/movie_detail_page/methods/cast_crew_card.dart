@@ -31,7 +31,7 @@ class CastCrewCard extends StatelessWidget {
           width: 50,
           // height: 30,
           child: Text(
-            actor.name ?? 'Unknown Cast',
+            actor.name,
             style: Theme.of(context).textTheme.bodyMedium,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
@@ -43,7 +43,7 @@ class CastCrewCard extends StatelessWidget {
           width: 50,
           // height: 30,
           child: Text(
-            actor.character ?? 'Unknown Character',
+            actor.character,
             style: Theme.of(
               context,
             ).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
