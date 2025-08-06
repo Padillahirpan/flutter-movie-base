@@ -65,7 +65,7 @@ class _BookingConfirmationPageState
               height: (MediaQuery.of(context).size.width - 48) * 0.6,
               borderRadius: 15,
               imageUrl:
-                  "https://image.tmdb.org/t/p/w500${movieDetail.backdropPath ?? movieDetail.posterPath}",
+                  "https://image.tmdb.org/t/p/w500${movieDetail.backdropPath ?? movieDetail.backdropPath}",
               fit: BoxFit.cover,
             ),
           ),

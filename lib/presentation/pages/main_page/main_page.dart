@@ -8,7 +8,7 @@ import 'package:movie_app/presentation/widgets/bottom_nav_bar.dart';
 import 'package:movie_app/presentation/widgets/bottom_nav_bar_item.dart';
 
 import '../profile/profile_page.dart';
-import '../search/search_page.dart';
+import '../ticket/ticket_page.dart';
 
 class MainPage extends ConsumerStatefulWidget {
   const MainPage({super.key});
@@ -41,7 +41,7 @@ class _MainPageState extends ConsumerState<MainPage> {
             onPageChanged: (index) => setState(() {
               selectedIndex = index;
             }),
-            children: const [HomePage(), SearchPage(), ProfilePage()],
+            children: const [HomePage(), TicketPage(), ProfilePage()],
           ),
           BottomNavBar(
             items: [
@@ -54,8 +54,8 @@ class _MainPageState extends ConsumerState<MainPage> {
               BottomNavBarItem(
                 index: 1,
                 isSelected: selectedIndex == 1,
-                label: 'Search',
-                icon: Icons.search,
+                label: 'Ticket',
+                icon: Icons.card_giftcard,
               ),
               BottomNavBarItem(
                 index: 2,
