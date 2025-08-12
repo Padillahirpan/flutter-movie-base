@@ -14,14 +14,13 @@ class TransactionCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 100.0,
-      // padding: const EdgeInsets.all(8.0),
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(8.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.white.withAlpha(40),
+            color: Colors.lightGreenAccent.withAlpha(40),
             blurRadius: 4.0,
             offset: const Offset(0, 2),
           ),
@@ -77,7 +76,7 @@ class TransactionCard extends StatelessWidget {
                   Text(
                     transaction.title == 'Top Up'
                         ? '+ ${(-transaction.total).toIDRCurrencyFormat()}'
-                        : transaction.total.toIDRCurrencyFormat(),
+                        : '- ${transaction.total.toIDRCurrencyFormat()}',
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       color: transaction.title == 'Top Up'
                           ? Colors.green

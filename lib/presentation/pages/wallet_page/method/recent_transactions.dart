@@ -14,9 +14,10 @@ List<Widget> recentTransactions(WidgetRef ref) => [
           if (transactions.isEmpty) {
             return [const Text('No recent transactions')];
           }
-          return transactions.map((transaction) {
-            return TransactionCard(transaction: transaction);
-          }).toList();
+          return (transactions..sort(
+                (a, b) => b.transactionTime!.compareTo(a.transactionTime!),
+              ))
+              .map((transaction) => TransactionCard(transaction: transaction));
         },
         error: (error, stackTrace) => [Text('Error: $error')],
         loading: () => [const CircularProgressIndicator()],
