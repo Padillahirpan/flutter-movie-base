@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/presentation/pages/profile/profile_item.dart';
 import 'package:movie_app/presentation/pages/profile/user_info.dart';
+import 'package:movie_app/presentation/providers/router/router_provider.dart';
 import '../../providers/user_data/user_data_provider.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
@@ -59,7 +60,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                     profileItem(
                       'My Wallet',
                       onTap: () {
-                        // Handle email tap
+                        ref.read(routerProvider).pushNamed('wallet');
                       },
                     ),
                     const SizedBox(height: 18),

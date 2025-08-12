@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/presentation/misc/extensions/integer_extension.dart';
+import 'package:movie_app/presentation/providers/router/router_provider.dart';
 
 import '../../../misc/methods.dart';
 import '../../../providers/user_data/user_data_provider.dart';
@@ -45,19 +46,24 @@ Widget userInfo(WidgetRef ref) {
               style: TextStyle(fontSize: 14, color: Colors.grey[400]),
             ),
             verticalSpace(8.0),
-            Row(
-              children: [
-                Icon(Icons.wallet, size: 16, color: Colors.grey[400]),
-                horizontalSpace(4.0),
-                Text(
-                  userData?.balance.toIDRCurrencyFormat() ?? '0 IDR',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.greenAccent[400],
-                    fontWeight: FontWeight.bold,
+            GestureDetector(
+              onTap: () {
+                ref.read(routerProvider).pushNamed('wallet');
+              },
+              child: Row(
+                children: [
+                  Icon(Icons.wallet, size: 16, color: Colors.grey[400]),
+                  horizontalSpace(4.0),
+                  Text(
+                    userData?.balance.toIDRCurrencyFormat() ?? '0 IDR',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.greenAccent[400],
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
