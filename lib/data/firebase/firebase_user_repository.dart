@@ -78,7 +78,7 @@ class FirebaseUserRepository implements UserRepository {
         photoUrl: data['photoUrl'] as String?,
         balance: data['balance'] as int? ?? 0,
       );
-      return Result.success(User.fromJson(snapshot.data()!));
+      return Result.success(user);
     } else {
       return Result.failure('User not found');
     }

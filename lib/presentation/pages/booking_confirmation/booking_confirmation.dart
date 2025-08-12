@@ -107,7 +107,7 @@ class _BookingConfirmationPageState
           ),
           transactionRow(
             title: 'Admin Fee',
-            value: '${transaction.adminFee.toIDRCurrencyFormat() ?? '0'}',
+            value: transaction.adminFee.toIDRCurrencyFormat(),
             width: MediaQuery.of(context).size.width - 48,
           ),
           Padding(
@@ -116,7 +116,7 @@ class _BookingConfirmationPageState
           ),
           transactionRow(
             title: 'Total',
-            value: '${transaction.total.toIDRCurrencyFormat()}',
+            value: transaction.total.toIDRCurrencyFormat(),
             width: MediaQuery.of(context).size.width - 48,
           ),
           Padding(
@@ -150,7 +150,6 @@ class _BookingConfirmationPageState
                         'Failed to create transaction: $message',
                       );
                       break;
-                    default:
                   }
                 });
               },

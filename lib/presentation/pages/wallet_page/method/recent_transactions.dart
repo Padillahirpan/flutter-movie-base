@@ -12,7 +12,22 @@ List<Widget> recentTransactions(WidgetRef ref) => [
       .when(
         data: (transactions) {
           if (transactions.isEmpty) {
-            return [const Text('No recent transactions')];
+            return [
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[900],
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                height: 400,
+                width: double.infinity,
+                child: Center(
+                  child: const Text(
+                    'No recent transactions',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ];
           }
           return (transactions..sort(
                 (a, b) => b.transactionTime!.compareTo(a.transactionTime!),
