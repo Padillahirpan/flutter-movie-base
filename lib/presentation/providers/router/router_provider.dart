@@ -13,6 +13,7 @@ import '../../../domain/entities/movie_detail.dart';
 import '../../../domain/entities/transaction.dart';
 import '../../pages/booking_confirmation/booking_confirmation.dart';
 import '../../pages/seat_booking_page/seat_booking_page.dart';
+import '../../pages/wallet_page/wallet_page.dart';
 
 part 'router_provider.g.dart';
 
@@ -76,6 +77,13 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
         return BookingConfirmationPage(
           transactionDetail: state.extra as (MovieDetail, Transaction),
         );
+      },
+    ),
+    GoRoute(
+      path: '/wallet',
+      name: 'wallet',
+      builder: (context, state) {
+        return WalletPage();
       },
     ),
   ],
