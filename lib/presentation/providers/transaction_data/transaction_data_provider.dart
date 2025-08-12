@@ -16,12 +16,13 @@ class TransactionData extends _$TransactionData {
   @override
   Future<List<Transaction>> build() async {
     User? user = ref.read(userDataProvider).valueOrNull;
+    await Future.delayed(const Duration(seconds: 5));
     if (user != null) {
       state = const AsyncLoading();
 
       GetTransactions getTransactions = ref.read(getTransactionsProvider);
 
-      var result = getTransactions(GetTransactionsParam(uid: user.uid));
+      var result = await getTransactions(GetTransactionsParam(uid: user.uid));
 
       if (result case Success(value: final transactions)) {
         return transactions;

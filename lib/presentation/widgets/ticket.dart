@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:movie_app/domain/entities/transaction.dart';
@@ -17,13 +19,14 @@ class Ticket extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            NetworkImageCard(
+              imageUrl:
+                  "https://image.tmdb.org/t/p/w500${transaction.transactionImage}",
+              width: double.infinity,
+              height: 170,
+              fit: BoxFit.cover,
+            ),
             ListTile(
-              leading: NetworkImageCard(
-                imageUrl:
-                    "https://image.tmdb.org/t/p/w500${transaction.transactionImage}",
-                width: 50,
-                height: 170,
-              ),
               title: Text('${transaction.title} Ticket'),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

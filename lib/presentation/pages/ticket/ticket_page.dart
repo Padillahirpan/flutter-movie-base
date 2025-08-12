@@ -57,7 +57,10 @@ class TicketPage extends ConsumerWidget {
                 fontWeight: FontWeight.w500,
               ),
             )
-          : ListView(children: data),
+          : Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView(children: data),
+            ),
     );
   }
 }

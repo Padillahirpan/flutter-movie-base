@@ -29,10 +29,6 @@ class NetworkImageCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.grey[400],
           borderRadius: BorderRadius.circular(borderRadius),
-          image: DecorationImage(
-            image: NetworkImage(imageUrl ?? ''),
-            fit: fit ?? BoxFit.cover,
-          ),
         ),
         child: Stack(
           children: [
@@ -52,9 +48,11 @@ class NetworkImageCard extends StatelessWidget {
                 child: FadeInImage.memoryNetwork(
                   fadeInDuration: Duration(milliseconds: 100),
                   fadeOutDuration: Duration(milliseconds: 100),
-                  image: imageUrl!,
+                  image: imageUrl ?? "",
                   placeholder: kTransparentImage,
                   fit: fit,
+                  width: width,
+                  height: height,
                 ),
               ),
             ],
