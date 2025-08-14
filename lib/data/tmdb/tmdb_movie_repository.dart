@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movie_app/data/api/restful_endpoint.dart';
 import 'package:movie_app/data/repositories/movie_repository.dart';
 import 'package:movie_app/domain/entities/actor.dart';
@@ -10,8 +11,7 @@ import '../api/endpoint.dart';
 
 class TmdbMovieRepository implements MovieRepository {
   final Dio? _dio;
-  final String _accessToken =
-      'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MzY2M2M0OGI2ZTQxODJlNTdlZjI5MjgyZTdlZTI3MiIsIm5iZiI6MTQ5NzMyOTI1My44NzAwMDAxLCJzdWIiOiI1OTNmNmU2MjkyNTE0MTRhZWUwMDc2ZDkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.sGx22OMHb7u6yZvLyDcF4GDiKI1JgAK0uufNgVOG9xo';
+  final String _accessToken = dotenv.env['TMDB_ACCESS_TOKEN']!;
 
   late final Options _options = Options(
     headers: {

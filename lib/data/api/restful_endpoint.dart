@@ -1,9 +1,11 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movie_app/data/api/endpoint.dart';
 
 class Restfulendpoints {
-  const Restfulendpoints._();
+  Restfulendpoints._();
 
-  static const String baseUrl = 'https://api.themoviedb.org/3/movie';
+  static String baseUrl = dotenv.env['BASE_URL'] ?? "";
+
   static const String language = 'language=en-US';
 
   static Endpoint actors({required int movieId}) {

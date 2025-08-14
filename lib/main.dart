@@ -5,6 +5,7 @@ import 'package:movie_app/firebase_options.dart';
 import 'package:movie_app/presentation/providers/router/router_provider.dart';
 import 'package:movie_app/presentation/widgets/connectivity/connectivity_wrapper.dart';
 import 'package:movie_app/theme.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'presentation/providers/theme/theme_provider.dart';
 
@@ -12,6 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await dotenv.load(fileName: ".env");
 
   runApp(const ProviderScope(child: MainApp()));
 }
