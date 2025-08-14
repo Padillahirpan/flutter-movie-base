@@ -13,6 +13,7 @@ import '../../../domain/entities/movie_detail.dart';
 import '../../../domain/entities/transaction.dart';
 import '../../pages/booking_confirmation/booking_confirmation.dart';
 import '../../pages/seat_booking_page/seat_booking_page.dart';
+import '../../pages/theme/theme_setting.dart';
 import '../../pages/wallet_page/wallet_page.dart';
 
 part 'router_provider.g.dart';
@@ -84,6 +85,13 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
       name: 'wallet',
       builder: (context, state) {
         return WalletPage();
+      },
+    ),
+    GoRoute(
+      path: '/theme-setting',
+      name: 'theme-setting',
+      builder: (context, state) {
+        return ThemeSettingPage();
       },
     ),
   ],

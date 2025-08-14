@@ -80,9 +80,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                     const Divider(height: 32),
                     const SizedBox(height: 18),
                     profileItem(
-                      'Contact Us',
+                      'Theme',
                       onTap: () {
-                        // Handle contact us tap
+                        ref.read(routerProvider).pushNamed('theme-setting');
                       },
                     ),
                     const SizedBox(height: 18),
