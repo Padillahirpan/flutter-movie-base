@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:movie_app/data/repositories/movie_repository.dart';
 import 'package:movie_app/domain/entities/actor.dart';
 import 'package:movie_app/domain/entities/result.dart';
@@ -14,6 +16,10 @@ class GetActors implements UseCase<Result<List<Actor>>, GetActorsParam> {
   Future<Result<List<Actor>>> call(GetActorsParam params) async {
     var actorsResult = await _movieRepository.getActors(
       movieId: params.movieId,
+    );
+
+    log(
+      'GetActors called with movieId: ${params.movieId} and result: $actorsResult',
     );
 
     return switch (actorsResult) {

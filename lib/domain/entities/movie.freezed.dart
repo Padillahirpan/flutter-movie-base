@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Movie {
 
- int get id; String get title; String? get posterPath;
+ int get id; String get title;@JsonKey(name: 'poster_path') String? get posterPath;
 /// Create a copy of Movie
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $MovieCopyWith<$Res>  {
   factory $MovieCopyWith(Movie value, $Res Function(Movie) _then) = _$MovieCopyWithImpl;
 @useResult
 $Res call({
- int id, String title, String? posterPath
+ int id, String title,@JsonKey(name: 'poster_path') String? posterPath
 });
 
 
@@ -155,7 +155,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String title,  String? posterPath)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String title, @JsonKey(name: 'poster_path')  String? posterPath)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Movie() when $default != null:
 return $default(_that.id,_that.title,_that.posterPath);case _:
@@ -176,7 +176,7 @@ return $default(_that.id,_that.title,_that.posterPath);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String title,  String? posterPath)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String title, @JsonKey(name: 'poster_path')  String? posterPath)  $default,) {final _that = this;
 switch (_that) {
 case _Movie():
 return $default(_that.id,_that.title,_that.posterPath);case _:
@@ -196,7 +196,7 @@ return $default(_that.id,_that.title,_that.posterPath);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String title,  String? posterPath)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String title, @JsonKey(name: 'poster_path')  String? posterPath)?  $default,) {final _that = this;
 switch (_that) {
 case _Movie() when $default != null:
 return $default(_that.id,_that.title,_that.posterPath);case _:
@@ -211,12 +211,12 @@ return $default(_that.id,_that.title,_that.posterPath);case _:
 @JsonSerializable()
 
 class _Movie implements Movie {
-  const _Movie({required this.id, required this.title, this.posterPath});
+  const _Movie({required this.id, required this.title, @JsonKey(name: 'poster_path') this.posterPath});
   factory _Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
 
 @override final  int id;
 @override final  String title;
-@override final  String? posterPath;
+@override@JsonKey(name: 'poster_path') final  String? posterPath;
 
 /// Create a copy of Movie
 /// with the given fields replaced by the non-null parameter values.
@@ -251,7 +251,7 @@ abstract mixin class _$MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
   factory _$MovieCopyWith(_Movie value, $Res Function(_Movie) _then) = __$MovieCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String title, String? posterPath
+ int id, String title,@JsonKey(name: 'poster_path') String? posterPath
 });
 
 
